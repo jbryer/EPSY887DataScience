@@ -1,11 +1,12 @@
 # EPSY 887 Data Science Institute (Fall 2014) #
 
-Instructors:		J. Bryer (jason@bryer.org) and R. Pruzek (rpruzek@albany.edu)  
-Meeting Time: 		Tuesday 4:15 p.m. - 7:05  p.m.  
-Grading: 			3 credits, S/U grading  
-Course Website: 	https://github.com/jbryer/EPSY887DataScience
+***Instructor:***		Jason Bryer (jason@bryer.org)   
+***Class Time:*** 		Tuesday 4:15 p.m. - 7:05  p.m.  
+***Class Location:***  	Humanities 24  
+***Grading:*** 			3 credits, S/U grading  
+***Course Website:*** 	https://github.com/jbryer/EPSY887DataScience
 
-This seminar will provide an introduction to statistical programming for data analysis with an emphasis on the analysis of large datasets. With the increased availability of large national and international datasets (e.g. PISA, TIMMS, NAEP, ECLS) there is a great opportunity and potential for researchers to focus on important substantive research questions that are difficult to address by other means. However, the analysis of large datasets requires special analytical procedures not found in commercial statistics software. Utilizing the open source statistical software R, students will be introduced to tools and procedures for analyzing large datasets with an emphasis on conducting transparent and reproducible research.  
+DESCRIPTION COMING
 
 ## Topics:
 * Introduction to R (e.g. data input, recoding, etc.)
@@ -33,5 +34,29 @@ This course will make substantial use of the R software language. The following 
 
 These are the recommended books for learning R. They provide two different perspectives on R. Kabacoff presents R from a data analyst point-of-view whereas Matloff provides more of a software programming perspective. The complement each other nicely.
 
-* Kabacoff, R.J. (2011). *[R in Action: Data Analysis and Graphics with R](http://www.amazon.com/R-Action-Robert-Kabacoff/dp/1935182390/ref=sr_1_1?ie=UTF8&qid=1351957914&sr=8-1&keywords=r+in+action&tag=jasbry-20)*. Shelter Island, NY: Manning.
+* Kabacoff, R.J. (2011). *[R in Action: Data Analysis and Graphics with R](http://www.amazon.com/R-Action-Robert-Kabacoff/dp/1935182390/ref=sr_1_1?ie=UTF8&qid=1351957914&sr=8-1&keywords=r+in+action&tag=jasbry-20)*. Shelter Island, NY: Manning.
+
 * Matloff, N. (2011). *[The Art of R Programming](http://www.amazon.com/gp/product/B00683GXUO/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=B00683GXUO&linkCode=as2&tag=jasbry-20)*. San Francisco, CA: No Stratch Press
+
+## Schedule
+
+*NOTE: Tentative. Subject to change*
+
+Date   | Topic | Resources | Readings
+-------|:------|:----------|:--------:
+Aug-26 |       |           | 
+Sep-2  |       |           | 
+Sep-9  |       |           | 
+Sep-16 |       |           | 
+Sep-23 |       |           | 
+Sep-30 |       |           | 
+Oct-7  |       |           | 
+Oct-14 |       |           | 
+Oct-21 |       |           | 
+Oct-28 |       |           | 
+Nov-4  |       |           | 
+Nov-11 |       |           | 
+Nov-18 |       |           | 
+Nov-25 |       |           | 
+Dec-2  |       |           | 
+Dec-9  |       |           | 
