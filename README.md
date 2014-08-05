@@ -69,17 +69,15 @@ The first two books, Kabacoff and Matloff, are recommended books for learning R.
 
 Date   | Topic 
 -------|:------
-Aug-26 | Intro to Data Science
-       | Tools of the Trade
+Aug-26 | Intro to Data Science; Tools of the Trade
 Sep-2  | Loading and working with data in R
 Sep-9  | Data Visualizations using a grammar of graphics
-Sep-16 | Intro to programming in R (e.g. loops, conditional statments, functions, etc.)
-       | Object Oriented Programming
+Sep-16 | Intro to programming in R (e.g. loops, conditional statments, functions, etc.); Object Oriented Programming
 Sep-23 | Missing Data
 Sep-30 | Analysis of complex surveys
 Oct-7  | Classification and Regression Trees (CART) methods
 Oct-14 | Propensity Score Analysis
-Oct-21 | Advanced Propensity Score Analysis (multilevel modeling, non-binary treatments, and bootstrapping).
+Oct-21 | Advanced Propensity Score Analysis
 Oct-28 | Presenting Results
 Nov-4  | R Package Development
 Nov-11 | TBD
