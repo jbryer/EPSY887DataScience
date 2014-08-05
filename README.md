@@ -7,7 +7,7 @@
 ***Course Website:*** 	[http://epsy887.bryer.org](http://epsy887.bryer.org)
 
 
-Over the last five to ten years, data science has becoming one of the fastest growing fields and was named one of the "sexiest" jobs by [Harvard Business Review](http://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/). But is data science something new? Conway (2010) describes data science as the intersection of statistics, hacking skill (e.g. programming, computer skills, etc.), and expertise (see Figure 1). This seminar will explore the skills and tools necessary for data science with a special emphasis on the role of data science in educational and social science contexts. The first third of the course will focus on learning [R](http://www.r-project.org), the open source statistical software and programming language used by many data scientists. Then we will explore some of the important statistical procedures used by data scientists including: data visualizations, classification and regression trees, logistic regression, propensity score analysis, and other topics as time permits. The final third of class will be left for topics of special interest to students and their research agendas. Class examples will utilize the Programme of International Student Assessment, a large scale international study conducted every three years. Other open and freely available datasets will also be discussed as appropriate.
+Over the last five to ten years, data science has becoming one of the fastest growing fields and was named one of the "sexiest" jobs by [Harvard Business Review](http://hbr.org/2012/10/data-scientist-the-sexiest-job-of-the-21st-century/). But is data science something new? Conway (2010) describes data science as the intersection of statistics, hacking skill (e.g. programming, computer skills, etc.), and expertise (see Figure 1). This seminar will explore the skills and tools necessary for data science with a special emphasis on the role of data science in educational and social science contexts. The first third of the course will focus on learning [R](http://www.r-project.org), the open source statistical software and programming language used by many data scientists (i.e. hacking skills). The middle third will explore some of the important statistical procedures used by data scientists including: data visualizations, classification and regression trees, logistic regression, propensity score analysis, and other topics as time permits (i.e. math and statistical knowledge). The final third of class will be left for topics of special interest to students and their research agendas (i.e. substantive expertise). Class examples will utilize the [Programme of International Student Assessment](http://www.oecd.org/pisa/) (PISA), a large scale international study conducted every three years. Other open and freely available datasets will also be discussed as appropriate.
 
 <img src='Figures/Data_Science_Venn_Diagram.png' width='50%' alt='The Data Science Venn Diagram'/>  
 [Figure 1. The Data Science Venn Diagram (Conway, 2010)](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
@@ -52,7 +52,7 @@ This course will make substantial use of the R software language. The following 
 
 ### Suggested Textbooks
 
-The first two books, Kabacoff and Matloff, are recommended books for learning R. They provide two different perspectives on R. Kabacoff presents R from a data analyst point-of-view whereas Matloff provides more of a software programming perspective. The complement each other nicely. Zumel's book covers topics in R more relevant to data science. Lastly, Shron's provides a discussion about thinking about data from different perspectives. It is not necessary to purchase all these books.
+The first two books, Kabacoff and Matloff, are recommended for learning R. They provide two different perspectives on R. Specifically, Kabacoff presents R from a data analyst point-of-view whereas Matloff provides more of a software programming perspective. They complement each other nicely. Zumel's book covers topics in R more relevant to data science. Lastly, Shron's provides a discussion about thinking about data from different perspectives. It is not necessary to purchase all these books.
 
 * Kabacoff, R.J. (2011). *[R in Action: Data Analysis and Graphics with R](http://www.amazon.com/R-Action-Robert-Kabacoff/dp/1935182390/ref=sr_1_1?ie=UTF8&qid=1351957914&sr=8-1&keywords=r+in+action&tag=jasbry-20)*. Shelter Island, NY: Manning.
 
@@ -72,13 +72,13 @@ Date   | Topic
 Aug-26 | Intro to Data Science; Tools of the Trade
 Sep-2  | Loading and working with data in R
 Sep-9  | Data Visualizations using a grammar of graphics
-Sep-16 | Intro to programming in R (e.g. loops, conditional statments, functions, etc.); Object Oriented Programming
+Sep-16 | Intro to programming in R
 Sep-23 | Missing Data
 Sep-30 | Analysis of complex surveys
 Oct-7  | Classification and Regression Trees (CART) methods
 Oct-14 | Propensity Score Analysis
 Oct-21 | Advanced Propensity Score Analysis
-Oct-28 | Presenting Results
+Oct-28 | Preparing and Presenting Results
 Nov-4  | R Package Development
 Nov-11 | TBD
 Nov-18 | TBD
