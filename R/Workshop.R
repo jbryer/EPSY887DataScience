@@ -1,5 +1,5 @@
 #The working directory is where R will look for files by default
-setwd("~/Dropbox/School/Teaching/EPSY887 2014 Fall Data Science Institute/R")
+setwd("~/Dropbox/School/Teaching/EPSY887 2014 Fall Data Science Institute")
 getwd()
 
 #The search command returns a list of loaded (or attached) packages
@@ -68,14 +68,22 @@ tail(rcitations)
 #The apply function is usefull for applying a function to a series of rows (1)
 #or columns of a data frame or matrix. In this case, we wil sum the number of
 #citations for each year.
+rcitations[,]
 rcitations[,2:ncol(rcitations)]
+
+sum(rcitations$X2006, na.rm=TRUE)
+
 totals = apply(rcitations[,2:ncol(rcitations)], 2, sum, na.rm=TRUE)
 totals
+names(totals)
+totals['X2006']
 #The apply function returns a named vector. It is often more useful to convert
 #this to a data frame.
 class(totals)
 totals = as.data.frame(totals)
 totals
+row.names(totals)
+ncol(totals)
 #After converting totals to a data frame the data is presented vertically but
 #only contains one column. We can create a new variable (column) easily.
 ncol(totals)
@@ -90,7 +98,7 @@ totals
 
 #Using ggplot we can create a histogram
 ggplot(totals, aes(x=Year, y=Citations, label=Citations)) + 
-	geom_histogram(alpha=.5) + geom_text(size=3, vjust=-.5)
+	geom_histogram(alpha=.5, stat='identity') + geom_text(size=3, vjust=-.5)
 
 
 ##### GETTING HELP #############################################################
@@ -103,6 +111,7 @@ ggplot(totals, aes(x=Year, y=Citations, label=Citations)) +
 #anything returned from the search function.
 search()
 ls('package:xtable')
+ls()
 #You can get to a package's help file using the help function.
 help(package='xtable')
 #And of course there are other parameters to the help function, use ?help to
@@ -115,11 +124,18 @@ help.search('regression')
 RSiteSearch('regression')
 
 ##### Factors ##################################################################
-f <- factor(letters[1:6], levels=letters[1:12], labels=toupper(letters[1:12]))
+l <- letters[1:6]
+class(l)
+table(l)
+f <- factor(l, levels=letters[1:12], labels=toupper(letters[1:12]))
 f
 as.integer(f)
 as.character(f)
 table(f, useNA='ifany')
+
+f2 <- factor(l, levels=letters[12:1], labels=toupper(letters[12:1]))
+f2
+as.integer(f2)
 
 ################################################################################
 students = read.xls('Data/students.xls')
