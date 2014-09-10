@@ -1,0 +1,136 @@
+---
+title: "Intro to Grammar of Graphics (ggplot2)"
+author: "Jason Bryer"
+date: "September 9, 2014"
+output:
+  beamer_presentation:
+    keep_tex: true
+    fig_width: 7
+    fig_height: 4
+    fig_caption: false
+---
+
+
+## ggplot2
+
+`ggplot2` (Wickham, 2009) is an R package that implements the *Graammar of Graphics* introduced by Wilkinson (2005).
+
+(Journal of Statistical Software paper)[http://www.jstatsoft.org/v17/b03/paper]
+
+## The Lego Package
+
+```{r options, echo=FALSE, results='hide'}
+options(width=70)
+```
+
+```{r install, eval=FALSE}
+# https://github.com/seankross/lego
+devtools::install_github("seankross/lego")
+```
+```{r setup, results='hide', message=FALSE}
+library(lego)
+library(psych)
+```
+
+## The Lego Package
+
+```{r}
+data(legosets)
+head(legosets, n=3)
+```
+
+## Parts of a ggplot2 statement
+
+> - Data  
+  ggplot(myDataFrame, aes(x=x, y=y)
+> - Layers  
+  geom_point(), geom_histogram()
+> - Facets  
+  facet_wrap(~ cut), facet_grid(~ cut)
+> - Scales  
+  scale_y_log10()
+> - Other options  
+  ggtitle('my title'), ylim(c(0, 10000)), xlab('x-axis label')
+
+## There are Lots of Geoms
+
+```{r geoms}
+ls("package:ggplot2")[substr(ls("package:ggplot2"), 
+							 1, 5) == 'geom_']
+```
+
+
+## Histograms
+
+```{r, fig.height=4, warning=FALSE}
+ggplot(legosets, aes(x=Pieces)) + 
+	geom_histogram()
+```
+
+## Log Transformations
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Pieces)) + 
+	geom_histogram() + scale_x_log10()
+```
+
+## Barplots
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Theme)) + geom_bar() + 
+	theme(axis.text.x=element_text(angle=90))
+```
+
+## Barplots Flipping Coordinates
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Theme)) + geom_bar() + 
+	coord_flip()
+```
+
+## Labeling Barplots
+
+```{r, warning=FALSE}
+df <- as.data.frame(table(legosets$Theme))
+df <- df[df$Freq > 20,]
+ggplot(df, aes(x=Var1, y=Freq, label=Freq)) + 
+	geom_bar(stat='identity', alpha=.5) + 
+	coord_flip() + geom_text(hjust=0)
+```
+
+## Boxplots
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Availability, Pieces)) + 
+	geom_boxplot()
+```
+
+## Boxplots Flipping Coordinates
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Availability, Pieces)) + 
+	geom_boxplot() + coord_flip()
+```
+
+## Boxplots for Longitudinal Data
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=factor(Year), y=USD_MSRP)) + 
+	geom_boxplot() + theme(axis.text.x=element_text(angle=90)) + 
+	xlab('Year') + ylab('Price')
+```
+
+## Scatterplots
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Pieces, y=USD_MSRP)) + 
+	geom_point(alhpa=.5)
+```
+
+## Scatterplots with Loess Plots
+
+```{r, warning=FALSE}
+ggplot(legosets, aes(x=Pieces, y=USD_MSRP)) + 
+	geom_point(alhpa=.5) + geom_smooth()
+```
+
