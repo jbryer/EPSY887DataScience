@@ -1,0 +1,286 @@
+%\documentclass[handout]{beamer}
+%\documentclass[handout,10pt,slidestop,mathserif]{beamer}
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{2 on 1}
+\documentclass[10pt,slidestop,mathserif,c]{beamer}
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+
+\usepackage{tabularx}
+\usepackage{verbatim}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage[noae]{Sweave}
+\usepackage{moreverb}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{Sweave}
+%\SweaveOpts{prefix.string=figures/}
+
+\newcommand{\putat}[3]{\begin{picture}(0,0)(0,0)\put(#1,#2){#3}\end{picture}}
+  
+\newenvironment{changemargin}[2]{%
+  \begin{list}{}{%
+    \setlength{\topsep}{0pt}%
+    \setlength{\leftmargin}{#1}%
+    \setlength{\rightmargin}{#2}%
+    \setlength{\listparindent}{\parindent}%
+    \setlength{\itemindent}{\parindent}%
+    \setlength{\parsep}{\parskip}%
+  }%
+  \item[]}{\end{list}}
+
+%% Define a new "leo" style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\tiny\ttfamily}}}
+\makeatother
+
+\title{Missing Data}
+\subtitle{EPSY 887: Data Science Institute}
+\author[Jason Bryer]{Jason Bryer}
+\institute[Jason.Bryer.org]{\url{https://github.com/jbryer/EPSY887DataScience}\\\href{mailto:jason@bryer.org}{jason@bryer.org}}
+\date[Sep 30, 2014]{September 30, 2014}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\AtBeginSection[]
+{
+   \begin{frame}
+       \frametitle{Agenda}
+       \tableofcontents[currentsection,currentsubsections]
+   \end{frame}
+}
+
+<<echo=FALSE>>=
+options(width=70)
+options(digits=2)
+options(continue="   ")
+options(warn=-1)
+
+require(ggplot2)
+require(grid)
+require(VIM)
+require(mice)
+@
+
+\frame{\titlepage}
+%\frame{\frametitle{Agenda}\tableofcontents[hideallsubsections]}
+
+\section{Evaluating the Nature of Missiness}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Classifications of Missing Data}
+    \begin{description}
+        \item[MCAR] \textit{Missing completely at random}
+        
+        \item[MAR] \textit{Missing at random}
+        
+        \item[NMAR] \textit{Not missing at random}
+    \end{description}
+
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Methods for Handling Missing Data\footnote{Kabacoff, 2011, p. 355}}
+    \begin{center}
+    \includegraphics{MissingDataMethods}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Mammal Sleep Data}
+<<>>=
+data(sleep)
+str(sleep)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Complete Cases}
+<<>>=
+complete.cases(sleep)
+head(sleep[complete.cases(sleep),])
+@
+
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Incomplete Cases}
+<<>>=
+head(sleep[!complete.cases(sleep),])
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{How much is missing?}
+Number of missing values
+<<>>=
+sum(is.na(sleep$Dream))
+@
+Percent missing
+<<>>=
+mean(is.na(sleep$Dream))
+@
+Percent of rows with missing data
+<<>>=
+mean(!complete.cases(sleep))
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Pattern of Missingness}
+<<>>=
+md.pattern(sleep)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Visualizing Missingness}
+<<fig-aggr,fig=TRUE,width=10,height=7,include=FALSE>>=
+aggr(sleep, prop=FALSE, numbers=TRUE)
+@
+    \begin{center}
+    \includegraphics{Slides-fig-aggr}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Visualizing Missingness}
+<<fig-matrixplot,fig=TRUE,width=10,height=7,include=FALSE>>=
+matrixplot(sleep)
+@
+    \begin{center}
+    \includegraphics{Slides-fig-matrixplot}
+    \end{center}
+
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Visualizing Missingness}
+<<fig-marginplot,fig=TRUE,width=10,height=7,include=FALSE>>=
+marginplot(sleep[,c('Gest','Dream')], pch=c(20), col=c('darkgray','red','blue'))
+@
+    \begin{center}
+    \includegraphics{Slides-fig-marginplot}
+    \end{center}
+
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Shadow Matrix}
+<<>>=
+sm <- as.data.frame(abs(is.na(sleep)))
+head(sleep)
+head(sm)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Correlation of Missingness}
+    Examine the correlation of missingness between variables
+<<>>=
+#Extract varabibles that have some missingness
+y <- sm[which(sapply(sm, sd) > 0)] 
+cor(y)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+	\frametitle{Relationship between missingness and observed variables}
+<<>>=
+cor(sleep, y, use='pairwise.complete.obs')
+@
+    Rows are observed variables, columns missing indicators. Nondreaming (\texttt{NonD}) sleep scores are more likely to be missing with larger body weights (\texttt{BodyWgt}) with r=0.227. Since the correlations are not very larger this suggests the nature of the missingness deviates minimally from the MCAR and MAR assumptions.
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Understanding missingness}
+    Kabacoff (2011, p. 362) suggests the following questions to address:
+    \begin{itemize}
+        \item What percentage of the data is missing?
+        \item Is it concentrated in a few variables, or widely distributed?
+        \item Does it appear to be random?
+        \item Does the covariation of missing data with each other or with the observed data suggest a possible mechanism that's producing the missing values.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{Options for analyzing data with missing values}
+    \begin{itemize}
+        \item Complete case analysis (listwise deletiong) - Use the \texttt{na.omit} function to remove any rows with missing values. 
+        \item Pairwise deletion
+        \item Multiple imputation
+        \item Simple imputation - replace values with a single value (e.g. mean, median, mode)
+    \end{itemize}
+
+\end{frame}
+
+
+\section{Imputing Missing Values}
+
+\begin{frame}
+    \frametitle{Multiple Imputation}
+    \begin{itemize}
+        \item Imputes (fills in) missing values using repeated simulations.
+        \item Utilizes Gibbs sampling.
+        \item Each variable with missing values is predicted from other variables.
+        \item Multiple complete datasets are created using differing distributions.
+        \item As few as three, but typically five or more imputations are necessary.
+        \item Analysis is conducted separately for each complete dataset and results are pooled.
+    \end{itemize}
+
+    
+    \hfill See volume 45 of the \textit{Journal of Statistical Software} which is a special volume on multiple imputation: \url{http://www.jstatsoft.org/v45/}.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Steps for Multiple Imputation\footnote{Kabacoff, 2011, p. 366}}
+    \begin{center}
+    \includegraphics{miceSteps}
+    \end{center}
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{mice}
+    Using the \texttt{mice} package to impute missing values.
+<<>>=
+imp <- mice(sleep, printFlag=FALSE, seed=1234)
+imp
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{mice}
+<<>>=
+dataset5 <- complete(imp, 5)
+head(dataset5)
+@
+\end{frame}
+
+\begin{frame}[containsverbatim,fragile]
+    \frametitle{mice}
+<<>>=
+fit <- with(imp, lm(Dream ~ Span + Gest))
+pooled <- pool(fit) 
+summary(pooled)
+@
+\end{frame}
+
+
+
+%\begin{frame}[c]
+%	\LARGE{Thank You}\\
+%	\normalsize
+%	Jason Bryer (jason@bryer.org)\\
+%	\url{http://jbryer.github.com}
+%\end{frame}
+
+\end{document}

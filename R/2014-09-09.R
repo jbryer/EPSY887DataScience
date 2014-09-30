@@ -123,6 +123,7 @@ legosets$log_pieces <- log(legosets$Pieces)
 ggplot(legosets, aes(x=Theme)) + geom_bar() + 
 	theme(axis.text.x=element_text(angle=90, size=2))
 
+table(legosets$Theme)
 df <- as.data.frame(table(legosets$Theme))
 df <- df[df$Freq > 20,]
 ggplot(df, aes(x=Var1, y=Freq, label=Freq)) +
@@ -156,5 +157,22 @@ nrow(legosets2)
 ggplot(legosets2, aes(x=Pieces, y=USD_MSRP, color=Packaging)) + 
 	geom_point(alhpa=.5) + geom_smooth(method='loess')
 
+df.theme <- as.data.frame(table(legosets$Theme))
+themes <- df.theme[df.theme$Freq > 100,]$Var1
+df.tab <- as.data.frame(table(legosets$Theme, legosets$Availability))
+head(df.tab)
+head(data.frame(df.tab$Var1, df.tab$Var1 %in% themes), n=20)
 
+df.tab <- df.tab[df.tab$Var1 %in% themes,]
+ggplot(df.tab, aes(x=Var1, fill=Var2, y=Freq)) + geom_bar(stat='identity')
 
+df.city <- legosets[legosets$Theme %in% c('City', 'Town'),]
+head(df.city)
+
+df.city <- legosets[legosets$Theme %in% c('City'),]
+head(df.city)
+
+library(sqldf)
+df.city.sql <- sqldf("SELECT * FROM legosets WHERE Theme = 'City'")
+
+nrow(df.city.sql); nrow(df.city)
