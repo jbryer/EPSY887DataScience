@@ -1,0 +1,5 @@
+#!/bin/bash
+rm "$TEXPAD_ROOTFILE_NO_EXT.tex"
+r -e 'Sweave("'$TEXPAD_ROOTFILE_NO_EXT'.rnw")'
+pdflatex "$TEXPAD_ROOTFILE_NO_EXT.tex"
+pdflatex "$TEXPAD_ROOTFILE_NO_EXT.tex"

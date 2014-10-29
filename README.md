@@ -72,15 +72,15 @@ Date   | Topic
 Aug-26 | Intro to Data Science; Tools of the Trade
 Sep-2  | Loading and working with data in R
 Sep-9  | Data Visualizations using a grammar of graphics
-Sep-16 | Intro to programming in R
-Sep-23 | Missing Data
-Sep-30 | Analysis of complex surveys
+Sep-16 | More Grammar of Graphics
+Sep-23 | Intro to programming in R
+Sep-30 | Missing Data / Analysis of complex surveys
 Oct-7  | Classification and Regression Trees (CART) methods
-Oct-14 | Propensity Score Analysis
-Oct-21 | Advanced Propensity Score Analysis
-Oct-28 | Preparing and Presenting Results
-Nov-4  | R Package Development
-Nov-11 | TBD
+Oct-14 | Intro to Propensity Score Analysis
+Oct-21 | Bootstrapping PSA
+Oct-28 | PSA with Non-Binary Treatments
+Nov-4  | Multilevel PSA
+Nov-11 | Markdown, LaTeX, and Shiny
 Nov-18 | TBD
 Nov-25 | TBD
 Dec-2  | Presentations
