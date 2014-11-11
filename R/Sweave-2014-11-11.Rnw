@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[doc]{apa6}
 
 \title{EPSY 887 Example}
 \author{Jason Bryer}
@@ -7,11 +7,20 @@
 \SweaveOpts{concordance=TRUE}
 \maketitle
 
+\tableofcontents
+\clearpage
+
+\section{Working with Data}
+
+\subsection{Loading Data}
+
 Load the \texttt{cars} data frame.
 
 <<loadcars>>=
 data(cars)
 @
+
+\subsection{Printing Data}
 
 And print the first six rows:
 
@@ -19,6 +28,26 @@ And print the first six rows:
 head(cars)
 @
 
+\subsection{Using \texttt{xtable}}
+<<usingxtable>>=
+library(xtable)
+x <- xtable(head(cars), caption='The Cars Data Frame')
+@
 
+<<printxtable,results=tex,echo=FALSE>>=
+print(x, include.rownames=FALSE, caption.placement='top')
+@
+
+\section{Euler's Equation}
+
+\begin{equation}
+{ e }^{ i\pi  }+1=0
+\end{equation}
+
+\noindent In Euler's formula, if you raise $e$ to the $i\pi$ and add one, you get zero. Euler's formula, named after Leonhard Euler, is a mathematical formula in complex analysis that establishes the fundamental relationship between the trigonometric functions and the complex exponential function. 
+
+\begin{center}
+This formula can be interpreted as saying that the function eix is a unit complex number, i.e., traces out the unit circle in the complex plane as x ranges through the real numbers. Here, x is the angle that a line connecting the origin with a point on the unit circle makes with the positive real axis, measured counter clockwise and in radians.
+\end{center}
 
 \end{document}
