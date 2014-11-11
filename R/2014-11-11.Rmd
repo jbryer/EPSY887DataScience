@@ -1,0 +1,44 @@
+---
+title: "EPSY 887 Test Document"
+author: "Jason M. Bryer, Ph.D."
+date: "November 11, 2014"
+output: html_document
+---
+
+```{r, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+data(cars)
+library(xtable)
+```
+
+# Section 1 Header
+
+## Section 2 Header
+
+### Section 3 Header
+
+#### Section 4 Header
+
+##### Section 5 Header
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE, fig.width=10, fig.height=5}
+plot(cars)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r, echo=FALSE, results='asis'}
+x <- xtable(head(cars), caption='First Six Rows of cars')
+print(x, include.rownames=FALSE, type='html')
+```
+

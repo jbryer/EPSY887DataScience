@@ -1,0 +1,24 @@
+\documentclass{article}
+
+\title{EPSY 887 Example}
+\author{Jason Bryer}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\maketitle
+
+Load the \texttt{cars} data frame.
+
+<<loadcars>>=
+data(cars)
+@
+
+And print the first six rows:
+
+<<headcars>>=
+head(cars)
+@
+
+
+
+\end{document}
