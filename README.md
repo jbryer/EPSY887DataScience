@@ -80,9 +80,9 @@ Oct-14 | Intro to Propensity Score Analysis
 Oct-21 | Bootstrapping PSA
 Oct-28 | PSA with Non-Binary Treatments
 Nov-4  | Multilevel PSA
-Nov-11 | Markdown, LaTeX, and Shiny
-Nov-18 | TBD
-Nov-25 | TBD
+Nov-11 | Reproducible research with Markdown and LaTeX
+Nov-18 | Shiny
+Nov-25 | Factor Analysis
 Dec-2  | Presentations
 Dec-9  | Presentations
 
